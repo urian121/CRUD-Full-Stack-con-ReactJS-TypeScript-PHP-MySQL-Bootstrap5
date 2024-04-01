@@ -1,0 +1,65 @@
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: #242424 !important;
+  color: #333 !important;
+}
+.container {
+  background-color: #fff !important;
+  padding: 20px;
+  border-radius: 10px;
+}
+.fw-bold-900 {
+  font-weight: 900 !important;
+}
+.btn_add {
+  width: 100%;
+  border: 1px solid #333 !important;
+  background-color: #333 !important;
+}
+.btn_add:hover {
+  opacity: 0.8;
+}
+
+.flex_acciones {
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+.btn-success {
+  border: 1px solid #06c046 !important;
+  background-color: #06c046 !important;
+}
+hr {
+  height: 0.1px !important;
+  color: #06c046 !important;
+  width: 100% !important;
+  background-color: red;
+}
+.hr_morado {
+  height: 0.1px !important;
+  color: #7366ff !important;
+  width: 100% !important;
+  background-color: #7366ff;
+}
+.border_right {
+  border-right: 1px solid #dbdbdb;
+}
+.bi-arrow-right-circle {
+  font-size: 30px;
+}
+.bi-arrow-left-circle {
+  color: #7366ff;
+  font-size: 30px;
+  cursor: pointer;
+}
+.card {
+  margin: 0 auto;
+}
+.iteyOh {
+  justify-content: center !important;
+}

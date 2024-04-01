@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Formulario from "./components/Formulario";
+import ListaDeEmpleados from "./components/ListaDeEmpleados";
+import Titulo from "./components/Titulo";
+import useGestionarFormulario from "./custom_hooks/useGestionarFormulario";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const URL_API =
+    "http://localhost/crud-full-stack-con-reactjs-typescript-php-y-mysql/backend-php/";
+
+  // Usar el hook personalizado
+  const {
+    handleSubmit,
+    nombreRef,
+    cedulaRef,
+    edadRef,
+    sexoRef,
+    telefonoRef,
+    cargoRef,
+    avatarRef,
+  } = useGestionarFormulario(URL_API);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="row justify-content-md-center">
+        <Titulo />
+        <div className="col-md-5 mb-5">
+          <Formulario
+            handleSubmit={handleSubmit}
+            nombreRef={nombreRef}
+            cedulaRef={cedulaRef}
+            edadRef={edadRef}
+            sexoRef={sexoRef}
+            telefonoRef={telefonoRef}
+            cargoRef={cargoRef}
+            avatarRef={avatarRef}
+          />
+        </div>
+        <div className="col-md-7">
+          <ListaDeEmpleados />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
