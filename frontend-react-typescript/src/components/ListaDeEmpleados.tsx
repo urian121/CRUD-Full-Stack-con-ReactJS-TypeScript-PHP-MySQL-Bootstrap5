@@ -7,12 +7,13 @@ interface Empleado {
   cedula: string;
   edad: number;
   sexo: string;
+  telefono: string;
   cargo: string;
   avatar: string;
 }
 
 interface ListaDeEmpleadosProps {
-  empleados: Empleado[]; // Ahora empleados es un arreglo de objetos Empleado
+  empleados: Empleado[]; // empleados es un arreglo de objetos Empleado
   setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>;
   URL_API: string;
 }
@@ -87,7 +88,7 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
                         <i className="bi bi-binoculars"></i>
                       </span>
                     </li>
-                    <li className="mx-2">
+                    <li>
                       <span
                         title={`Editar datos del empleado ${empleado.nombre}`}
                         className="btn btn-primary"

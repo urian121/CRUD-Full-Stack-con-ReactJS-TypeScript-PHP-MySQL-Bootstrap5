@@ -7,6 +7,7 @@ interface Empleado {
   cedula: string;
   edad: number;
   sexo: string;
+  telefono: string;
   cargo: string;
   avatar: string;
 }

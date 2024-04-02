@@ -25,7 +25,7 @@ function App() {
     telefonoRef,
     cargoRef,
     avatarRef,
-  } = useGestionarFormulario(URL_API);
+  } = useGestionarFormulario(URL_API, empleados, setEmpleados);
 
   if (loading) {
     return <Loader />;

@@ -3,16 +3,21 @@ import axios from "axios";
 import { toast } from "../toastUtils";
 
 interface Empleado {
+  id: number;
   nombre: string;
   cedula: string;
   edad: number;
   sexo: string;
   telefono: string;
   cargo: string;
-  avatar: File;
+  avatar: string;
 }
 
-const useGestionarFormulario = (URL_API: string) => {
+const useGestionarFormulario = (
+  URL_API: string,
+  empleados: Empleado[],
+  setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>
+) => {
   const nombreRef = useRef<HTMLInputElement>(null);
   const cedulaRef = useRef<HTMLInputElement>(null);
   const edadRef = useRef<HTMLSelectElement>(null);
@@ -57,8 +62,8 @@ const useGestionarFormulario = (URL_API: string) => {
       toast.success("Amigo registrado correctamente.");
       console.log("Amigo registrado:", response.data);
 
-      //const ultimoEmpleado = response.data;
-      // setEmpleados([ultimoEmpleado, ...empleados]);
+      const ultimoEmpleado = response.data;
+      setEmpleados([ultimoEmpleado, ...empleados]);
 
       limpiarFormulario();
     } catch (error) {
