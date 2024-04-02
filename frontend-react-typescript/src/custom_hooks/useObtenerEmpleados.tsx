@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useObtenerAmigos = (URL_API) => {
-  const [amigos, setAmigos] = useState([]);
+const useObtenerEmpleados = (URL_API: string) => {
+  const [empleados, setEmpleados] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -10,9 +10,9 @@ const useObtenerAmigos = (URL_API) => {
       try {
         setLoading(true);
         const response = await axios.get(URL_API);
-        setAmigos(response.data);
+        setEmpleados(response.data);
       } catch (error) {
-        console.log("Error al obtener amigos:", error);
+        console.log("Error al obtener los empleados:", error);
       } finally {
         setLoading(false);
       }
@@ -21,7 +21,7 @@ const useObtenerAmigos = (URL_API) => {
     obtenerAmigos();
   }, [URL_API]);
 
-  return { amigos, setAmigos, loading };
+  return { empleados, setEmpleados, loading };
 };
 
-export default useObtenerAmigos;
+export default useObtenerEmpleados;

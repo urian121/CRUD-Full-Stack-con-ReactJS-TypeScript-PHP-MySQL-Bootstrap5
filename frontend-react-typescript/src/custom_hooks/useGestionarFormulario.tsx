@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import axios from "axios";
-//import { toast } from "../toastConfig";
+import { toast } from "../toastUtils";
 
 interface Empleado {
   nombre: string;
@@ -54,7 +54,7 @@ const useGestionarFormulario = (URL_API: string) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      //toast.success("Amigo registrado correctamente.");
+      toast.success("Amigo registrado correctamente.");
       console.log("Amigo registrado:", response.data);
 
       // const nuevoAmigo = response.data;

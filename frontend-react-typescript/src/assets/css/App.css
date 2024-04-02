@@ -63,3 +63,15 @@ hr {
 .iteyOh {
   justify-content: center !important;
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader {
+  font-size: 24px;
+  color: #333;
+}
