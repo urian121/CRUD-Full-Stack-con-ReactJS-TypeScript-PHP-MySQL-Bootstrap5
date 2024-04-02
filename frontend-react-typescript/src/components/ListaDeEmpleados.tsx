@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import { toast } from "../toastUtils";
 
 interface Empleado {
   id: number;
@@ -12,12 +13,14 @@ interface Empleado {
 
 interface ListaDeEmpleadosProps {
   empleados: Empleado[]; // Ahora empleados es un arreglo de objetos Empleado
+  setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>;
   URL_API: string;
 }
 
 const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
   empleados,
   URL_API,
+  setEmpleados,
 }) => {
   const obtenerDetallesEmpleado = (id: number) => {
     console.log("Detalles del empleado:", id);
@@ -27,8 +30,20 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
     console.log("Empleado para editar:", id);
   };
 
-  const eliminarEmpleado = (id: number) => {
+  const eliminarEmpleado = async (id: number) => {
     console.log("Empleado para eliminar:", id);
+    try {
+      const response = await axios.delete(`${URL_API}?id=${id}`);
+      console.log("empleado eliminado:", response.data);
+      toast.success("Empleado eliminado correctamente");
+
+      const nuevaListaEmpleados = empleados.filter(
+        (empleado) => empleado.id !== id
+      );
+      setEmpleados(nuevaListaEmpleados);
+    } catch (error) {
+      console.error("Error al eliminar el empleado:", error);
+    }
   };
 
   return (
@@ -72,7 +87,7 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
                         <i className="bi bi-binoculars"></i>
                       </span>
                     </li>
-                    <li>
+                    <li className="mx-2">
                       <span
                         title={`Editar datos del empleado ${empleado.nombre}`}
                         className="btn btn-primary"

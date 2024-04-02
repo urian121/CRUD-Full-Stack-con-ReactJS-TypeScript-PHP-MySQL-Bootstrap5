@@ -12,7 +12,13 @@ interface Empleado {
   avatar: File;
 }
 
-const useGestionarFormulario = (URL_API: string) => {
+interface Props {
+  URL_API: string;
+  empleados: Empleado[];
+  setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>;
+}
+
+const useGestionarFormulario = ({ URL_API, empleados, setEmpleados }: Props) => {
   const nombreRef = useRef<HTMLInputElement>(null);
   const cedulaRef = useRef<HTMLInputElement>(null);
   const edadRef = useRef<HTMLSelectElement>(null);
@@ -57,8 +63,8 @@ const useGestionarFormulario = (URL_API: string) => {
       toast.success("Amigo registrado correctamente.");
       console.log("Amigo registrado:", response.data);
 
-      //const ultimoEmpleado = response.data;
-      // setEmpleados([ultimoEmpleado, ...empleados]);
+      // Actualizar la lista de empleados
+      setEmpleados([...empleados, response.data]);
 
       limpiarFormulario();
     } catch (error) {
@@ -102,3 +108,11 @@ const useGestionarFormulario = (URL_API: string) => {
 };
 
 export default useGestionarFormulario;
+
+
+
+
+
+/**** */
+   {/*  empleados={empleados} */}
+            {/* setEmpleados={setEmpleados} */}

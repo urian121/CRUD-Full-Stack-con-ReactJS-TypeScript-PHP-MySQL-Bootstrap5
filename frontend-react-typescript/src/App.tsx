@@ -4,6 +4,8 @@ import ListaDeEmpleados from "./components/ListaDeEmpleados";
 import Loader from "./components/Loader";
 import Titulo from "./components/Titulo";
 
+import { ToastContainer } from "./toastUtils";
+
 // Importar el hook personalizado
 import useGestionarFormulario from "./custom_hooks/useGestionarFormulario";
 import useObtenerEmpleados from "./custom_hooks/useObtenerEmpleados";
@@ -13,8 +15,7 @@ function App() {
     "http://localhost/crud-full-stack-con-reactjs-typescript-php-y-mysql/backend-php/";
 
   // Usar el hook personalizado
-  const { empleados, loading } = useObtenerEmpleados(URL_API);
-  console.log("Empleados:", empleados);
+  const { empleados, setEmpleados, loading } = useObtenerEmpleados(URL_API);
   const {
     handleSubmit,
     nombreRef,
@@ -34,6 +35,7 @@ function App() {
     <>
       <div className="row justify-content-md-center">
         <Titulo />
+        <ToastContainer />
         <div className="col-md-5 mb-5">
           <Formulario
             handleSubmit={handleSubmit}
@@ -47,7 +49,15 @@ function App() {
           />
         </div>
         <div className="col-md-7">
-          <ListaDeEmpleados empleados={empleados} URL_API={URL_API} />
+          {empleados.length > 0 ? (
+            <ListaDeEmpleados
+              URL_API={URL_API}
+              empleados={empleados}
+              setEmpleados={setEmpleados}
+            />
+          ) : (
+            <p className="text-center">No hay empleados</p>
+          )}
         </div>
       </div>
     </>

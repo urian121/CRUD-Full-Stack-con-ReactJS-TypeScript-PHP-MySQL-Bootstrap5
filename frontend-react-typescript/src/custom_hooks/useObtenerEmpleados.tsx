@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+interface Empleado {
+  id: number;
+  nombre: string;
+  cedula: string;
+  edad: number;
+  sexo: string;
+  cargo: string;
+  avatar: string;
+}
+
 const useObtenerEmpleados = (URL_API: string) => {
-  const [empleados, setEmpleados] = useState([]);
+  const [empleados, setEmpleados] = useState<Empleado[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
