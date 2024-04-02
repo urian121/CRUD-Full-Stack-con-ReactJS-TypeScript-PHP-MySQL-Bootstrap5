@@ -1,16 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-interface Empleado {
-  id: number;
-  nombre: string;
-  cedula: string;
-  edad: number;
-  sexo: string;
-  telefono: string;
-  cargo: string;
-  avatar: string;
-}
+import { Empleado } from "../components/interfaces";
 
 const useObtenerEmpleados = (URL_API: string) => {
   const [empleados, setEmpleados] = useState<Empleado[]>([]);

@@ -15,14 +15,27 @@ $extensionesPermitidas = array("jpg", "jpeg", "png", "gif");
 
 switch ($metodo) {
     case 'GET':
-        $query = "SELECT * FROM $tbl_empleados ORDER BY id DESC";
-        $resultado = mysqli_query($con, $query);
-
-        $usuarios = array();
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $usuarios[] = $fila;
+        // Verificar si se ha proporcionado un ID en la cadena de consulta
+        if (isset($_GET['id'])) {
+            $id = mysqli_real_escape_string($con, $_GET['id']);
+            $query = "SELECT id, nombre, cedula, sexo, cargo, edad, telefono, avatar FROM $tbl_empleados WHERE id = $id";
+            $resultado = mysqli_query($con, $query);
+            if (mysqli_num_rows($resultado) > 0) {
+                // Si se encontró, obtener los datos y devolverlos como JSON
+                $usuario = mysqli_fetch_assoc($resultado);
+                echo json_encode($usuario);
+            } else {
+                echo json_encode(array('mensaje' => 'No se encontró ningún usuario con el ID proporcionado'));
+            }
+        } else {
+            $query = "SELECT * FROM $tbl_empleados ORDER BY id DESC";
+            $resultado = mysqli_query($con, $query);
+            $usuarios = array();
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                $usuarios[] = $fila;
+            }
+            echo json_encode($usuarios);
         }
-        echo json_encode($usuarios);
         break;
 
     case 'POST':

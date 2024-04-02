@@ -1,6 +1,4 @@
-interface SelectEdadProps {
-  edadRef: React.RefObject<HTMLSelectElement>;
-}
+import { SelectEdadProps } from "./interfaces";
 
 const SelectEdad: React.FC<SelectEdadProps> = ({ edadRef }) => {
   const options = [];

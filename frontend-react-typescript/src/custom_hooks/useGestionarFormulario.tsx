@@ -1,17 +1,7 @@
 import { useRef } from "react";
 import axios from "axios";
 import { toast } from "../toastUtils";
-
-interface Empleado {
-  id: number;
-  nombre: string;
-  cedula: string;
-  edad: number;
-  sexo: string;
-  telefono: string;
-  cargo: string;
-  avatar: string;
-}
+import { Empleado } from "../components/interfaces";
 
 const useGestionarFormulario = (
   URL_API: string,

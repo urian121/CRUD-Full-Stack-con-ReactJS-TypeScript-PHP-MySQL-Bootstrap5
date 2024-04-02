@@ -1,6 +1,4 @@
-interface SelectCargoProps {
-  cargoRef: React.RefObject<HTMLSelectElement>;
-}
+import { SelectCargoProps } from "./interfaces";
 
 const SelectCargo: React.FC<SelectCargoProps> = ({ cargoRef }) => {
   const cargos = [
