@@ -31,6 +31,19 @@ export interface Empleado {
   avatar: string;
 }
 
+
+ export  interface InfoEmp {
+    id: string;
+    nombre: string;
+    cedula: string;
+    sexo: string;
+    cargo: string;
+    avatar?: string;
+    edad?: string;
+    telefono?: string;
+  }
+
+
 // Define las propiedades esperadas para el componente ListaDeEmpleados.
 export interface ListaDeEmpleadosProps {
   empleados: Empleado[]; //Array de empleados
@@ -38,16 +51,7 @@ export interface ListaDeEmpleadosProps {
   //mostarDetallesEmpleado: boolean;
   setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>;
   setMostarDetallesEmpleado: React.Dispatch<React.SetStateAction<boolean>>;
-  setInfoEmpleado: React.Dispatch<React.SetStateAction<Empleado[]>>;
-}
-
-// Define las propiedades esperadas para el componente TablaEmpleados.
-export interface TablaEmpleadosProps {
-  empleados: Empleado[];
-  URL_API: string;
-  setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>;
-  setMostarDetallesEmpleado: React.Dispatch<React.SetStateAction<boolean>>;
-    setInfoEmpleado: React.Dispatch<React.SetStateAction<Empleado[]>>;
+  setEmpleadoSeleccionado: React.Dispatch<React.SetStateAction<InfoEmp | null>>;
 }
 
 // Define las propiedades esperadas para el componente SelectEdad.

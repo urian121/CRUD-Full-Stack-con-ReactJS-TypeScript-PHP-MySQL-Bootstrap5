@@ -7,7 +7,7 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
   URL_API,
   setEmpleados,
   setMostarDetallesEmpleado,
-  setInfoEmpleado,
+  setEmpleadoSeleccionado,
 }) => {
   return (
     <TablaEmpleados
@@ -15,7 +15,7 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
       URL_API={URL_API}
       setEmpleados={setEmpleados}
       setMostarDetallesEmpleado={setMostarDetallesEmpleado}
-      setInfoEmpleado={setInfoEmpleado}
+      setEmpleadoSeleccionado={setEmpleadoSeleccionado}
     />
   );
 };

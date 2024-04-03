@@ -1,20 +1,28 @@
-import { Empleado } from "./interfaces";
+import { InfoEmp } from "../components/interfaces";
 
-interface DetallesDelEmpleadoProps {
-  infoEmpleado: Empleado;
+interface Props {
+  empleadoSeleccionado: InfoEmp | null;
 }
 
-const DetallesDelEmpleado: React.FC<DetallesDelEmpleadoProps> = ({
-  infoEmpleado,
-}) => {
+const DetallesDelEmpleado: React.FC<Props> = ({ empleadoSeleccionado }) => {
+  if (!empleadoSeleccionado) {
+    return <div>No se ha seleccionado ningún empleado</div>;
+  }
+
+  const { id, nombre, cedula, sexo, cargo, avatar, edad, telefono } =
+    empleadoSeleccionado;
+
   return (
     <div>
       <h2>Detalles del Empleado</h2>
-      <p>ID: {infoEmpleado.id}</p>
-      <p>Nombre: {infoEmpleado.nombre}</p>
-      <p>Cédula: {infoEmpleado.cedula}</p>
-      <p>Edad: {infoEmpleado.edad}</p>
-      <p>Sexo: {infoEmpleado.sexo}</p>
+      <p>ID: {id}</p>
+      <p>Nombre: {nombre}</p>
+      <p>Cédula: {cedula}</p>
+      <p>Sexo: {sexo}</p>
+      <p>Cargo: {cargo}</p>
+      <p>Edad: {edad}</p>
+      <p>Teléfono: {telefono}</p>
+      <p>Avatar: {avatar}</p>
     </div>
   );
 };

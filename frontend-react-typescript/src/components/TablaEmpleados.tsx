@@ -1,22 +1,20 @@
 import axios from "axios";
 import { toast } from "../toastUtils";
-import { TablaEmpleadosProps } from "./interfaces";
+import { ListaDeEmpleadosProps } from "./interfaces";
 
-const TablaEmpleados: React.FC<TablaEmpleadosProps> = ({
+const TablaEmpleados: React.FC<ListaDeEmpleadosProps> = ({
   empleados,
   URL_API,
   setEmpleados,
   setMostarDetallesEmpleado,
-  setInfoEmpleado,
+  setEmpleadoSeleccionado,
 }) => {
   const obtenerDetallesEmpleado = async (id: number) => {
-    console.log("Detalles del empleado:", id);
     setMostarDetallesEmpleado(true);
     try {
       const response = await axios.get(`${URL_API}?id=${id}`);
       setMostarDetallesEmpleado(true);
-      console.log(response.data);
-      setInfoEmpleado(response.data);
+      setEmpleadoSeleccionado(response.data);
     } catch (error) {
       console.error("Error buscar detalles del empleado:", error);
     }
