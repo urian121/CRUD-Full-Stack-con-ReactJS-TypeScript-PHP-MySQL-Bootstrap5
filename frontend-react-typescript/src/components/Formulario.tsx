@@ -23,7 +23,11 @@ const Formulario: React.FC<FormularioProps> = ({
   avatarRef,
 }) => {
   return (
-    <div>
+    <>
+      <h1 className="fw-bold-900 mb-4">
+        Registrar Empleado <hr />
+      </h1>
+
       <form
         className="px-5"
         onSubmit={handleSubmit}
@@ -116,7 +120,7 @@ const Formulario: React.FC<FormularioProps> = ({
           </button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -20,7 +20,6 @@ function App() {
 
   const [empleadoSeleccionado, setEmpleadoSeleccionado] =
     useState<InfoEmp | null>(null);
-  console.log("empleado seleccionado:", empleadoSeleccionado);
 
   const URL_API =
     "http://localhost/crud-full-stack-con-reactjs-typescript-php-y-mysql/backend-php/";
@@ -42,6 +41,10 @@ function App() {
     return <Loader />;
   }
 
+  const volverHome = () => {
+    setMostarDetallesEmpleado(false);
+  };
+
   return (
     <>
       <div className="row justify-content-md-center">
@@ -49,7 +52,10 @@ function App() {
         <ToastContainer />
         <div className="col-md-5 mb-5">
           {mostarDetallesEmpleado ? (
-            <DetallesDelEmpleado empleadoSeleccionado={empleadoSeleccionado} />
+            <DetallesDelEmpleado
+              empleadoSeleccionado={empleadoSeleccionado}
+              volverHome={volverHome}
+            />
           ) : (
             <Formulario
               handleSubmit={handleSubmit}

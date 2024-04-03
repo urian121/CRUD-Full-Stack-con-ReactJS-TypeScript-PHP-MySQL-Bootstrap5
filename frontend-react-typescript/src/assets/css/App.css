@@ -31,37 +31,18 @@ body {
   margin: 0 auto;
 }
 .btn-success {
-  border: 1px solid #06c046 !important;
-  background-color: #06c046 !important;
+  border: 1px solid #7366ff !important;
+  background-color: #7366ff !important;
 }
 hr {
   height: 0.1px !important;
-  color: #06c046 !important;
+  color: #7366ff !important;
   width: 100% !important;
   background-color: red;
 }
-.hr_morado {
-  height: 0.1px !important;
-  color: #7366ff !important;
-  width: 100% !important;
-  background-color: #7366ff;
-}
+
 .border_right {
   border-right: 1px solid #dbdbdb;
-}
-.bi-arrow-right-circle {
-  font-size: 30px;
-}
-.bi-arrow-left-circle {
-  color: #7366ff;
-  font-size: 30px;
-  cursor: pointer;
-}
-.card {
-  margin: 0 auto;
-}
-.iteyOh {
-  justify-content: center !important;
 }
 
 .loader-container {
