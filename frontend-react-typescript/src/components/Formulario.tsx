@@ -57,7 +57,7 @@ const Formulario: React.FC<FormularioProps> = ({
             <SelectEdad edadRef={edadRef} />
           </div>
           <div className="col-md-6">
-            <label className="form-label">Sexo del alumno</label>
+            <label className="form-label">Sexo del empleado</label>
             <div className="form-check">
               <input
                 className="form-check-input"
@@ -102,15 +102,14 @@ const Formulario: React.FC<FormularioProps> = ({
           <SelectCargoEmpleado cargoRef={cargoRef} />
         </div>
         <div className="mb-3 mt-4">
-          <label className="form-label float-start">
-            Cambiar Foto del empleado
-          </label>
+          <label className="form-label float-start">Foto del empleado</label>
           <input
             className="form-control form-control-sm"
             type="file"
             name="avatar"
             ref={avatarRef}
             accept="image/png, image/jpeg"
+            required
           />
         </div>
 

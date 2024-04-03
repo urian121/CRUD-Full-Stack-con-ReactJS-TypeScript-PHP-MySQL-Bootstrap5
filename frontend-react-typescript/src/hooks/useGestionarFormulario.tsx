@@ -49,15 +49,15 @@ const useGestionarFormulario = (
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Amigo registrado correctamente.");
-      console.log("Amigo registrado:", response.data);
+      toast.success("Empleado registrado correctamente.");
+      console.log("Empleado registrado:", response.data);
 
       const ultimoEmpleado = response.data;
       setEmpleados([ultimoEmpleado, ...empleados]);
 
       limpiarFormulario();
     } catch (error) {
-      console.error("Error al agregar amigo:", error);
+      console.error("Error al agregar empleado:", error);
     }
   };
 

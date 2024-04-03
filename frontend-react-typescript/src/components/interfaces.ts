@@ -52,6 +52,21 @@ export interface ListaDeEmpleadosProps {
   setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>;
   setMostarDetallesEmpleado: React.Dispatch<React.SetStateAction<boolean>>;
   setEmpleadoSeleccionado: React.Dispatch<React.SetStateAction<InfoEmp | null>>;
+  setShowEditarEmpl: React.Dispatch<React.SetStateAction<boolean>>;
+  setDataToEdit: React.Dispatch<React.SetStateAction<InfoEmp | null>>;
+}
+
+
+export interface FormularioProps {
+  handleSubmitUpdate: (event: React.FormEvent<HTMLFormElement>) => void;
+  nombreUpdateRef: React.RefObject<HTMLInputElement>;
+  cedulaUpdateRef: React.RefObject<HTMLInputElement>;
+  edadUpdateRef: React.RefObject<HTMLSelectElement>;
+  sexoUpdateRef: React.RefObject<HTMLInputElement>;
+  telefonoUpdateRef: React.RefObject<HTMLInputElement>;
+  cargoUpdateRef: React.RefObject<HTMLSelectElement>;
+  avatarUpdateRef: React.RefObject<HTMLInputElement>;
+  dataToEdit: InfoEmp | null;
 }
 
 // Define las propiedades esperadas para el componente SelectEdad.

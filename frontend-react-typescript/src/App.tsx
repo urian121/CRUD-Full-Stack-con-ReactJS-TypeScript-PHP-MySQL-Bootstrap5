@@ -12,7 +12,10 @@ import { InfoEmp } from "./components/interfaces";
 // Importar el hook personalizado
 import useGestionarFormulario from "./hooks/useGestionarFormulario";
 import useObtenerEmpleados from "./hooks/useObtenerEmpleados";
+import useGestionarUpdateFormulario from "./hooks/useGestionarUpdateFormulario";
+
 import DetallesDelEmpleado from "./components/DetallesDelEmpleado";
+import FormularioEdit from "./components/FormularioEdit";
 
 function App() {
   const [mostarDetallesEmpleado, setMostarDetallesEmpleado] =
@@ -20,6 +23,10 @@ function App() {
 
   const [empleadoSeleccionado, setEmpleadoSeleccionado] =
     useState<InfoEmp | null>(null);
+
+  // Manejar 2 estados para obtener el empleado a editar y almacenar la data de dicho empleado
+  const [showEditarEmpl, setShowEditarEmpl] = useState<boolean>(false);
+  const [dataToEdit, setDataToEdit] = useState<InfoEmp | null>(null);
 
   const URL_API =
     "http://localhost/crud-full-stack-con-reactjs-typescript-php-y-mysql/backend-php/";
@@ -37,6 +44,16 @@ function App() {
     avatarRef,
   } = useGestionarFormulario(URL_API, empleados, setEmpleados);
 
+  const {
+    handleSubmitUpdate,
+    nombreUpdateRef,
+    cedulaUpdateRef,
+    edadUpdateRef,
+    sexoUpdateRef,
+    telefonoUpdateRef,
+    cargoUpdateRef,
+    avatarUpdateRef,
+  } = useGestionarUpdateFormulario(URL_API, empleados, setEmpleados);
   if (loading) {
     return <Loader />;
   }
@@ -56,6 +73,18 @@ function App() {
               empleadoSeleccionado={empleadoSeleccionado}
               volverHome={volverHome}
             />
+          ) : showEditarEmpl ? (
+            <FormularioEdit
+              handleSubmitUpdate={handleSubmitUpdate}
+              nombreUpdateRef={nombreUpdateRef}
+              cedulaUpdateRef={cedulaUpdateRef}
+              edadUpdateRef={edadUpdateRef}
+              sexoUpdateRef={sexoUpdateRef}
+              telefonoUpdateRef={telefonoUpdateRef}
+              cargoUpdateRef={cargoUpdateRef}
+              avatarUpdateRef={avatarUpdateRef}
+              dataToEdit={dataToEdit}
+            />
           ) : (
             <Formulario
               handleSubmit={handleSubmit}
@@ -69,6 +98,7 @@ function App() {
             />
           )}
         </div>
+
         <div className="col-md-7">
           {empleados.length > 0 ? (
             <ListaDeEmpleados
@@ -77,6 +107,8 @@ function App() {
               setEmpleados={setEmpleados}
               setMostarDetallesEmpleado={setMostarDetallesEmpleado}
               setEmpleadoSeleccionado={setEmpleadoSeleccionado}
+              setShowEditarEmpl={setShowEditarEmpl}
+              setDataToEdit={setDataToEdit}
             />
           ) : (
             <p className="text-center">No hay empleados</p>

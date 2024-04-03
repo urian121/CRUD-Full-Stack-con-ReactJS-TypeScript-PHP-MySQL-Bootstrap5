@@ -56,3 +56,8 @@ hr {
   font-size: 24px;
   color: #333;
 }
+.foto-perfil {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}

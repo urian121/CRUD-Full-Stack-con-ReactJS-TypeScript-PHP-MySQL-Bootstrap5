@@ -7,7 +7,7 @@ const useObtenerEmpleados = (URL_API: string) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const obtenerAmigos = async () => {
+    const obtenerEmpleados = async () => {
       try {
         setLoading(true);
         const response = await axios.get(URL_API);
@@ -19,7 +19,7 @@ const useObtenerEmpleados = (URL_API: string) => {
       }
     };
 
-    obtenerAmigos();
+    obtenerEmpleados();
   }, [URL_API]);
 
   return { empleados, setEmpleados, loading };

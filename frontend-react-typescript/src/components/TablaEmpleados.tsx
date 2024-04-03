@@ -8,6 +8,8 @@ const TablaEmpleados: React.FC<ListaDeEmpleadosProps> = ({
   setEmpleados,
   setMostarDetallesEmpleado,
   setEmpleadoSeleccionado,
+  setShowEditarEmpl,
+  setDataToEdit,
 }) => {
   const obtenerDetallesEmpleado = async (id: number) => {
     setMostarDetallesEmpleado(true);
@@ -20,8 +22,15 @@ const TablaEmpleados: React.FC<ListaDeEmpleadosProps> = ({
     }
   };
 
-  const obtenerEmpleadoParaEditar = (id: number) => {
-    console.log("Empleado para editar:", id);
+  const obtenerEmpleadoParaEditar = async (id: number) => {
+    try {
+      const response = await axios.get(`${URL_API}?id=${id}`);
+      setMostarDetallesEmpleado(false); // oculto el formulario de detalles
+      setShowEditarEmpl(true); // muestro el formulario de edición
+      setDataToEdit(response.data); // almaceno la data de empleado seleccionado en esta variable
+    } catch (error) {
+      console.error("Error al obtener los datos del empleado:", error);
+    }
   };
 
   const eliminarEmpleado = async (id: number) => {

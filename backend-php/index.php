@@ -65,10 +65,10 @@ switch ($metodo) {
                         $lastInsertedId = mysqli_insert_id($con);
                         $selectQuery = "SELECT * FROM $tbl_empleados WHERE id = $lastInsertedId";
                         $result = mysqli_query($con, $selectQuery);
-                        $lastAmigo = mysqli_fetch_assoc($result);
+                        $lastEmpleado = mysqli_fetch_assoc($result);
 
                         // Devolver los detalles del último amigo como JSON
-                        echo json_encode($lastAmigo);
+                        echo json_encode($lastEmpleado);
                     } else {
                         echo json_encode(array('error' => 'Error al crear amigo: ' . mysqli_error($con)));
                     }
@@ -78,6 +78,22 @@ switch ($metodo) {
             } else {
                 echo json_encode(array('error' => 'Tipo de archivo no permitido'));
             }
+        }
+        break;
+
+    case 'PUT':
+        $data = json_decode(file_get_contents("php://input"), true);
+        $id = $data['id'];
+        print_r($_POST);
+        $nombre = ucwords($data['nombre']);
+        $email = trim($data['email']);
+        $telefono = trim($data['telefono']);
+
+        $query = "UPDATE $tbl_alumnos SET nombre='$nombre', email='$email', telefono='$telefono' WHERE id=$id";
+        if (mysqli_query($con, $query)) {
+            echo json_encode(array('message' => 'Contacto actualizado correctamente'));
+        } else {
+            echo json_encode(array('error' => 'Error al actualizar contacto: ' . mysqli_error($con)));
         }
         break;
 

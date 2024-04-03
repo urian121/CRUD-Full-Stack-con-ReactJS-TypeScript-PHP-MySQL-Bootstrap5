@@ -8,6 +8,8 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
   setEmpleados,
   setMostarDetallesEmpleado,
   setEmpleadoSeleccionado,
+  setShowEditarEmpl,
+  setDataToEdit,
 }) => {
   return (
     <TablaEmpleados
@@ -16,6 +18,8 @@ const ListaDeEmpleados: React.FC<ListaDeEmpleadosProps> = ({
       setEmpleados={setEmpleados}
       setMostarDetallesEmpleado={setMostarDetallesEmpleado}
       setEmpleadoSeleccionado={setEmpleadoSeleccionado}
+      setShowEditarEmpl={setShowEditarEmpl}
+      setDataToEdit={setDataToEdit}
     />
   );
 };
