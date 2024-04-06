@@ -1,7 +1,7 @@
 import SelectEdad from "./SelectEdad";
 import SelectCargoEmpleado from "./SelectCargoEmpleado";
 import { FormularioProps } from "../components/interfaces";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const FormularioEdit: React.FC<FormularioProps> = ({
   handleSubmitUpdate,
@@ -18,15 +18,12 @@ const FormularioEdit: React.FC<FormularioProps> = ({
   const avatarUrl: string =
     "http://localhost/crud-full-stack-con-reactjs-typescript-php-y-mysql/backend-php/fotos_empleados";
 
-  const [sexo, setSexo] = useState<string>("");
-
   /**
    * Hay que asegurarsee de actualizar las referencias (ref) de los campos del formulario cada vez que cambia el empleado seleccionado.
    *  Puedes hacer esto utilizando el método useEffect de React.
    */
   useEffect(() => {
     if (dataToEdit) {
-      setSexo(dataToEdit.sexo);
       if (idUpdateRef.current) {
         idUpdateRef.current.value = dataToEdit.id.toString();
       }
@@ -39,8 +36,8 @@ const FormularioEdit: React.FC<FormularioProps> = ({
       if (edadUpdateRef.current) {
         edadUpdateRef.current.value = dataToEdit.edad || "";
       }
-      if (dataToEdit && dataToEdit.sexo && sexoUpdateRef.current) {
-        sexoUpdateRef.current.checked = dataToEdit.sexo === "masculino";
+      if (sexoUpdateRef.current) {
+        sexoUpdateRef.current.value = dataToEdit.sexo || "";
       }
       if (telefonoUpdateRef.current) {
         telefonoUpdateRef.current.value = dataToEdit.telefono || "";
@@ -105,37 +102,12 @@ const FormularioEdit: React.FC<FormularioProps> = ({
             <SelectEdad edadRef={edadUpdateRef} />
           </div>
           <div className="col-md-6">
-            <label className="form-label">Sexo del empleado</label>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                ref={sexoUpdateRef}
-                id="masculino"
-                value="masculino"
-                checked={sexo === "masculino"}
-                onChange={() => setSexo("masculino")}
-                name="sexo"
-              />
-              <label className="form-check-label" htmlFor="masculino">
-                Masculino
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                ref={sexoUpdateRef}
-                id="femenino"
-                value="femenino"
-                checked={sexo === "femenino"}
-                onChange={() => setSexo("femenino")}
-                name="sexo"
-              />
-              <label className="form-check-label" htmlFor="femenino">
-                Femenino
-              </label>
-            </div>
+            <label className="form-label float-start">Sexo</label>
+            <select className="form-select" ref={sexoUpdateRef} required>
+              <option value="">Seleccione el sexo</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+            </select>
           </div>
         </div>
 

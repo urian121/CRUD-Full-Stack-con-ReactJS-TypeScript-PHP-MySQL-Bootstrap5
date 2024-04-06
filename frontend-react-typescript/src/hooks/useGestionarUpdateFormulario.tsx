@@ -48,6 +48,7 @@ const useGestionarUpdateFormulario = (
       cargo: cargoUpdateRef.current.value,
       avatar: avatarUpdateRef.current.files[0],
     };
+    console.log(formData);
     const id = formData.id;
 
     try {

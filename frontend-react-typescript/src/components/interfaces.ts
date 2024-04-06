@@ -63,7 +63,7 @@ export interface FormularioProps {
   nombreUpdateRef: React.RefObject<HTMLInputElement>;
   cedulaUpdateRef: React.RefObject<HTMLInputElement>;
   edadUpdateRef: React.RefObject<HTMLSelectElement>;
-  sexoUpdateRef: React.RefObject<HTMLInputElement>;
+  sexoUpdateRef: React.RefObject<HTMLSelectElement>;
   telefonoUpdateRef: React.RefObject<HTMLInputElement>;
   cargoUpdateRef: React.RefObject<HTMLSelectElement>;
   avatarUpdateRef: React.RefObject<HTMLInputElement>;
