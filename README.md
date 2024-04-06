@@ -17,7 +17,7 @@
 
 #### Resultado final
 
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/enviar-formulario-desde-react-hacia-php.png)
+![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/crud-ful-stack-react-typescript-php-mysql.png)
 
 ##### Notas
 
