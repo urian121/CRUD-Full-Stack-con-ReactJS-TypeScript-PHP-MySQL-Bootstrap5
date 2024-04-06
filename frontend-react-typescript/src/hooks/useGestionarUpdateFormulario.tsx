@@ -6,7 +6,8 @@ import { Empleado } from "../components/interfaces";
 const useGestionarUpdateFormulario = (
   URL_API: string,
   empleados: Empleado[],
-  setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>
+  setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>,
+  setShowEditarEmpl: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const idUpdateRef = useRef<HTMLInputElement>(null);
   /**
@@ -71,6 +72,7 @@ const useGestionarUpdateFormulario = (
       });
 
       setEmpleados(nuevosEmpleados);
+      setShowEditarEmpl(false);
 
       limpiarFormulario();
     } catch (error) {

@@ -54,7 +54,12 @@ function App() {
     telefonoUpdateRef,
     cargoUpdateRef,
     avatarUpdateRef,
-  } = useGestionarUpdateFormulario(URL_API, empleados, setEmpleados);
+  } = useGestionarUpdateFormulario(
+    URL_API,
+    empleados,
+    setEmpleados,
+    setShowEditarEmpl
+  );
   if (loading) {
     return <Loader />;
   }
