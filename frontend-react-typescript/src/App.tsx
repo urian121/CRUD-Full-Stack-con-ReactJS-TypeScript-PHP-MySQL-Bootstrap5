@@ -45,6 +45,7 @@ function App() {
   } = useGestionarFormulario(URL_API, empleados, setEmpleados);
 
   const {
+    idUpdateRef,
     handleSubmitUpdate,
     nombreUpdateRef,
     cedulaUpdateRef,
@@ -75,6 +76,7 @@ function App() {
             />
           ) : showEditarEmpl ? (
             <FormularioEdit
+              idUpdateRef={idUpdateRef}
               handleSubmitUpdate={handleSubmitUpdate}
               nombreUpdateRef={nombreUpdateRef}
               cedulaUpdateRef={cedulaUpdateRef}

@@ -8,6 +8,11 @@ const useGestionarUpdateFormulario = (
   empleados: Empleado[],
   setEmpleados: React.Dispatch<React.SetStateAction<Empleado[]>>
 ) => {
+  const idUpdateRef = useRef<HTMLInputElement>(null);
+  /**
+   * Esencialmente cuando dices const idUpdateRef = useRef<HTMLInputElement>(null!); se le dice a TypeScript que confíe en mi y que no realice comprobaciones de nulidad en este caso específico. Es mejor usar esta solución solo si estás seguro de que "idUpdateRef" siempre tendrá un valor no nulo en el contexto en el que se usa.
+   */
+
   const nombreUpdateRef = useRef<HTMLInputElement>(null);
   const cedulaUpdateRef = useRef<HTMLInputElement>(null);
   const edadUpdateRef = useRef<HTMLSelectElement>(null);
@@ -33,6 +38,7 @@ const useGestionarUpdateFormulario = (
       return;
     }
     const formData = {
+      id: idUpdateRef.current?.value ? parseInt(idUpdateRef.current.value) : 0,
       nombre: nombreUpdateRef.current.value,
       cedula: cedulaUpdateRef.current.value,
       edad: parseInt(edadUpdateRef.current.value),
@@ -41,19 +47,30 @@ const useGestionarUpdateFormulario = (
       cargo: cargoUpdateRef.current.value,
       avatar: avatarUpdateRef.current.files[0],
     };
-    console.log("Data para actualizar:", formData);
-    const id = dataToEdit?.id;
+    const id = formData.id;
+
     try {
-      const response = await axios.put<Empleado>(`${URL_API}${id}`, formData, {
+      const response = await axios.post<Empleado>(`${URL_API}${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Empleado registrado correctamente.");
-      console.log("Empleado registrado:", response.data);
 
+      toast.success("Empleado actualizado correctamente.");
+
+      // Accediendo al empleado actualizado desde la respuesta
       const ultimoEmpleado = response.data;
-      setEmpleados([ultimoEmpleado, ...empleados]);
+
+      // Actualizar la fila correspondiente en la lista de empleados
+      const nuevosEmpleados = empleados.map((empleado) => {
+        if (empleado.id === ultimoEmpleado.id) {
+          // Si el empleado existe en la lista, actualiza sus datos
+          return ultimoEmpleado;
+        }
+        return empleado; // Si no, simplemente devuelve el empleado sin cambios
+      });
+
+      setEmpleados(nuevosEmpleados);
 
       limpiarFormulario();
     } catch (error) {
@@ -63,6 +80,7 @@ const useGestionarUpdateFormulario = (
 
   const limpiarFormulario = () => {
     if (
+      !idUpdateRef.current ||
       !nombreUpdateRef.current ||
       !cedulaUpdateRef.current ||
       !edadUpdateRef.current ||
@@ -75,6 +93,7 @@ const useGestionarUpdateFormulario = (
       return;
     }
 
+    idUpdateRef.current.value = "";
     nombreUpdateRef.current.value = "";
     cedulaUpdateRef.current.value = "";
     edadUpdateRef.current.value = "";
@@ -85,6 +104,7 @@ const useGestionarUpdateFormulario = (
   };
 
   return {
+    idUpdateRef,
     handleSubmitUpdate,
     nombreUpdateRef,
     cedulaUpdateRef,

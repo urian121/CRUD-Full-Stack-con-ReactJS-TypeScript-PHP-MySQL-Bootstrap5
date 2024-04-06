@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 const FormularioEdit: React.FC<FormularioProps> = ({
   handleSubmitUpdate,
+  idUpdateRef,
   nombreUpdateRef,
   cedulaUpdateRef,
   edadUpdateRef,
@@ -17,7 +18,6 @@ const FormularioEdit: React.FC<FormularioProps> = ({
   const avatarUrl: string =
     "http://localhost/crud-full-stack-con-reactjs-typescript-php-y-mysql/backend-php/fotos_empleados";
 
-  console.log("Data to edit:", dataToEdit);
   const [sexo, setSexo] = useState<string>("");
 
   /**
@@ -27,6 +27,9 @@ const FormularioEdit: React.FC<FormularioProps> = ({
   useEffect(() => {
     if (dataToEdit) {
       setSexo(dataToEdit.sexo);
+      if (idUpdateRef.current) {
+        idUpdateRef.current.value = dataToEdit.id.toString();
+      }
       if (nombreUpdateRef.current) {
         nombreUpdateRef.current.value = dataToEdit.nombre || "";
       }
@@ -47,6 +50,7 @@ const FormularioEdit: React.FC<FormularioProps> = ({
       }
     }
   }, [
+    idUpdateRef,
     dataToEdit,
     nombreUpdateRef,
     cedulaUpdateRef,
@@ -68,7 +72,13 @@ const FormularioEdit: React.FC<FormularioProps> = ({
         onSubmit={handleSubmitUpdate}
         method="POST"
         encType="multipart/form-data">
-        <input type="text" name="id" defaultValue={dataToEdit?.id} />
+        <input
+          type="text"
+          name="id"
+          ref={idUpdateRef}
+          defaultValue={dataToEdit?.id || ""}
+          hidden
+        />
         <div className="mb-3">
           <label className="form-label float-start">Nombre</label>
           <input

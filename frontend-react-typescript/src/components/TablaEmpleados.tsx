@@ -34,10 +34,8 @@ const TablaEmpleados: React.FC<ListaDeEmpleadosProps> = ({
   };
 
   const eliminarEmpleado = async (id: number) => {
-    console.log("Empleado para eliminar:", id);
     try {
-      const response = await axios.delete(`${URL_API}?id=${id}`);
-      console.log("empleado eliminado:", response.data);
+      await axios.delete(`${URL_API}?id=${id}`);
       toast.success("Empleado eliminado correctamente");
 
       const nuevaListaEmpleados = empleados.filter(
@@ -65,7 +63,7 @@ const TablaEmpleados: React.FC<ListaDeEmpleadosProps> = ({
         </thead>
         <tbody>
           {empleados.map((empleado) => (
-            <tr key={empleado.id}>
+            <tr id={`tr_empleado_${empleado.id}`} key={empleado.id}>
               <td>{empleado.nombre}</td>
               <td>{empleado.edad}</td>
               <td>{empleado.cedula}</td>

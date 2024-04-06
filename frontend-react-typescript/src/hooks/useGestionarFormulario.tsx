@@ -41,7 +41,6 @@ const useGestionarFormulario = (
       cargo: cargoRef.current.value,
       avatar: avatarRef.current.files[0],
     };
-    console.log("Formulario enviado:", formData);
 
     try {
       const response = await axios.post<Empleado>(URL_API, formData, {
@@ -50,7 +49,6 @@ const useGestionarFormulario = (
         },
       });
       toast.success("Empleado registrado correctamente.");
-      console.log("Empleado registrado:", response.data);
 
       const ultimoEmpleado = response.data;
       setEmpleados([ultimoEmpleado, ...empleados]);

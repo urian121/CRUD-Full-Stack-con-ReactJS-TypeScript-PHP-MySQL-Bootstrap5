@@ -58,6 +58,7 @@ export interface ListaDeEmpleadosProps {
 
 
 export interface FormularioProps {
+  idUpdateRef: React.RefObject<HTMLInputElement>;
   handleSubmitUpdate: (event: React.FormEvent<HTMLFormElement>) => void;
   nombreUpdateRef: React.RefObject<HTMLInputElement>;
   cedulaUpdateRef: React.RefObject<HTMLInputElement>;
